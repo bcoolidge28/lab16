@@ -61,18 +61,24 @@ class myApp(object):
     def key(self,event):
         global player
         global rocket1Fired
+        x1,y1,x2,y2 = drawpad.coords(enemy)
+        px1,py1,px2,py2 = drawpad.coords(player)
         if event.char == "w":
-            drawpad.move(player,0,-4)
-            drawpad.move(rocket1,0,-4)
+            if y1 and py1 > 0:
+                drawpad.move(player,0,-4)
+                drawpad.move(rocket1,0,-4)
         elif event.char == "s":
-            drawpad.move(player,0,4)
-            drawpad.move(rocket1,0,4)
+            if y2 and py2 < 600:
+                drawpad.move(player,0,4)
+                drawpad.move(rocket1,0,4)
         elif event.char == "a":
-            drawpad.move(player,-4,0)
-            drawpad.move(rocket1,-4,0)
+            if x1 and px1 > 5:
+                drawpad.move(player,-4,0)
+                drawpad.move(rocket1,-4,0)
         elif event.char == "d":
-            drawpad.move(player,4,0)
-            drawpad.move(rocket1,4,0)
+             if x2 and px2 < 800:
+                drawpad.move(player,4,0)
+                drawpad.move(rocket1,4,0)
     
     def collisionDetect(self, rocket):
         rx1,ry1,rx2,ry2 = drawpad.coords(rocket)
